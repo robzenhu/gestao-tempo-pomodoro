@@ -5,10 +5,25 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
+        <div class="main">
+            <div class="turns">1/4</div>
+            <div class="time-container">              
+                <svg width="200" height="200" class="circle-container">
+                    <circle class="background-circle"/>
+                    <circle class="circle"/>
+                </svg>
+                <div class="time">25:00</div>
+            </div>
+            <div class="time-mode">Trabalho</div>
+            <div>
+                <button class="time-control">Inciar</button>
+                <button class="reset-button">Reiniciar</button>
+            </div>
+        </div>
+        <audio id="notification">
+            <source src="notification.mp3" >
+        </audio>
 
-        <svg width="200" height="200" class="circle-container">
-            <circle class="circle"/>
-        </svg>
         <script scr="scripts.js"></script>
     </body>
 </html>

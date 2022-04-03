@@ -1,16 +1,70 @@
 :root{
     --timer-color: #05ec8b;
 }
+
+html , body {
+    height: 100%;
+}
+
+body{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #30384c;
+    color: #fff;    
+}
+button{
+    padding: 16px 32px;
+    background-color: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover{
+    opacity: 0.8;
+}
+.main{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.turns{
+    background-color: rgba(255,255,255,0.2);
+    padding: 12px 24px;
+    border-radius: 5px;
+}
+.time-container{
+    position:relative;
+}
+.time{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 50px;
+}
+.time-mode{
+    padding: 24px;
+    font-size: 20px;
+}
 .circle-container{
     transform: rotate(-90deg);
 
 }
-
-.circle{
+.background-circle, .circle{
     r: 95;
     cx: 100;
     cy: 100;
     fill: none;
+}
+.background-circle{
+    stroke: rgba(255,255,255,0.2);
+    stroke-width: 5;
+}
+
+.circle{
     stroke: var(--timer-color);
     stroke-width: 10;
     stroke-dasharray: 597;
