@@ -1,8 +1,8 @@
 const circleElement = document.querySelector('.circle');
 const timeElement = document.querySelector('.time');
 const timeModeElement = document.querySelector('.time-mode');
-const turnElement = document.querySelector('.turn');
-const controlButton = document.querySelector('.control-button');
+const turnElement = document.querySelector('.turns');
+const controlButton = document.querySelector('.time-control');
 const resetButton = document.querySelector('.reset-button');
 const notificationSound = document.querySelector('#notification');
 
@@ -16,6 +16,7 @@ let isRunning,
     totalTime,
     timeRemaining,
     timer;
+    
 controlButton.addEventListener('click', toggleStartPause);
 resetButton.addEventListener('click', reset);
 
@@ -39,7 +40,7 @@ function toggleStartPause(){
  
 function start(){
     isRunning = true;
-    controlButton.innerText = 'Pause';
+    controlButton.innerText = 'Pausar';
     timer = setInterval(updateTimer, 1000);
 }
 function pause(){
@@ -74,7 +75,7 @@ function nextTurn(){
     if(!isBreakTime){
         currentTurn++;
     }
-    if(currentTurn<=totalTurns){
+    if(currentTurn <= totalTurns){
         if(isBreakTime){
             if(currentTurn < totalTime){
                 totalTime = breakTime;
@@ -87,7 +88,6 @@ function nextTurn(){
         timeRemaining = totalTime;
     }else{
         reset();
-
     }
 
 }
@@ -95,24 +95,26 @@ function nextTurn(){
 
 function drawTime(){
     const minutes = Math.floor(timeRemaining / 60).toString().padStart(2, '0');
-    const seconds = (timeRemaining % 60).toString().padStart(2, '0');
+    const seconds = Math.floor(timeRemaining % 60).toString().padStart(2, '0');
+
     timeElement.innerText = `${minutes}:${seconds}`;
     setCirclePercent(timeRemaining / totalTime * 100);
 
 }
+
 function drawTurn(){
     let timeMode = 'Trabalho';
     if(isBreakTime){
-        timeMode = currentTurn < totalTurns ? 'Intervalo' : 'Descanso longo';
+        timeMode = currentTurn < totalTurns ? 'Descanso' : 'Descanso longo';
      }
     timeModeElement.innerText = timeMode;
     turnElement.innerText = `${currentTurn} / ${totalTurns}`;
 }
 
 function setCirclePercent(percent){
-    const circlePerimeter = 597;
+    const circlePerimeter = 596;
     const dashOffest = (circlePerimeter * (percent / 100));
-    circleElement.style.setProperty('--dashoffset', dashOffest);
+    circleElement.style.setProperty('--dashoffset',circlePerimeter - dashOffest);
 }
 
 reset();
